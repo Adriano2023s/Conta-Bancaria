@@ -3,8 +3,8 @@
     internal class Conta
     {
         public string Nome { get; set; }
-        public string CPF { get; private set; }
-        public double NumeroConta { get; private set; }
+        public string CPF { get; set; }
+        public double NumeroConta { get; set; }
         public double Saldo { get; private set; }
         public double LimiteNegativo { get; private set; }
 
@@ -15,6 +15,11 @@
             NumeroConta = numeroconta;
             Saldo = 0;
             LimiteNegativo = limitenegativo;
+        }
+
+        public Conta()
+        {
+
         }
 
         public void Depozitar(double valor)
