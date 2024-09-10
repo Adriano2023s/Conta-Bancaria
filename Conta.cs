@@ -1,4 +1,6 @@
-﻿namespace ContaBancaria
+﻿using System;
+
+namespace ContaBancaria
 {
     internal class Conta
     {
@@ -6,23 +8,20 @@
         public string CPF { get; set; }
         public double NumeroConta { get; set; }
         public double Saldo { get; private set; }
-        public double LimiteNegativo { get; private set; }
 
-        public Conta(string nome, string cpf, double numeroconta, double limitenegativo)
+        public Conta(string nome, string cpf, double numeroConta, double saldoInicial = 0)
         {
             Nome = nome;
             CPF = cpf;
-            NumeroConta = numeroconta;
-            Saldo = 0;
-            LimiteNegativo = limitenegativo;
+            NumeroConta = numeroConta;
+            Saldo = saldoInicial;
         }
 
         public Conta()
         {
-
         }
 
-        public void Depozitar(double valor)
+        public void Depositar(double valor)
         {
             if (valor > 0)
             {
@@ -32,17 +31,17 @@
 
         public bool Sacar(double valor)
         {
-            if (valor > 0 && valor <= LimiteNegativo)
+            if (valor > 0)
             {
                 Saldo -= valor;
                 return true;
             }
             return false;
-            }
+        }
 
-        public void ExibirLimiteNegativo(double valorNegativo)
+        public void ExibirSaldo()
         {
-            LimiteNegativo -= valorNegativo;
+            Console.WriteLine($"Saldo atual: {Saldo}");
         }
     }
 }
